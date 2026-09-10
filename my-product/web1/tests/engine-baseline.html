@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><title>AMC Engine Baseline Test</title></head>
+<body><pre id="result">running</pre>
+<script src="../src/engine.js"></script>
+<script>
+  const cases = [{
+    name: '企业 Excel 基准样例 1',
+    expected: 2.065217391304364,
+    payload: {
+      concUnit: 'ug', molarMassM: 30.03, molarVolumeVm: 24.04,
+      input: { c0: 5, g: 9, etaMau: 0, covMau: 0, etaCeil: 0.9, covCeil: 1, etaAru: 0, covAru: 0, alpha: 0.2, beta: 0.8 }
+    }
+  }];
+  const results = cases.map((item) => {
+    const output = AMCEngine.calculate(item.payload);
+    const relativeError = Math.abs(output.nodes.cr - item.expected) / Math.abs(item.expected);
+    return { name: item.name, expected: item.expected, actual: output.nodes.cr, relativeError, converged: output.converged, passed: output.converged && relativeError <= 1e-6 };
+  });
+  let validationPassed = false;
+  try { AMCEngine.calculate({ ...cases[0].payload, input: { ...cases[0].payload.input, alpha: 0.3, beta: 0.8 } }); }
+  catch (error) { validationPassed = error.code === 1001; }
+  const report = { passed: results.every((item) => item.passed) && validationPassed, results, alphaBetaValidation: validationPassed };
+  document.getElementById('result').textContent = JSON.stringify(report, null, 2);
+  document.title = report.passed ? 'PASS' : 'FAIL';
+</script></body>
+</html>

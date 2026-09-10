@@ -4,3 +4,7 @@
 # Local operating-system metadata
 .DS_Store
 Thumbs.db
+
+# Local browser QA profiles and disposable screenshots
+.edge-*/
+qa-*.png
