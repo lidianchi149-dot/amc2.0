@@ -21,3 +21,143 @@
 .login-panel,.login-panel .el-form-item,.login-panel .el-form-item__content,.login-panel .el-input{min-width:0}
 .login-panel .el-form-item__content,.login-panel .el-input{width:100%}
 @media(max-width:820px){.login-page{grid-template-columns:minmax(0,1fr)}.login-panel{width:100%;overflow:hidden}.login-panel .el-form-item,.login-panel .login-button{width:76vw!important;max-width:76vw}}
+
+/* Login pearl-blue surface: soft daylight, restrained iridescence, and crisp form edges. */
+.login-panel{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  box-shadow:-34px 0 62px rgba(172,211,245,.2);
+  background:
+    radial-gradient(circle at 12% 8%,rgba(255,255,255,.98) 0,rgba(255,255,255,.72) 17%,transparent 38%),
+    radial-gradient(ellipse at 92% 18%,rgba(150,205,255,.5) 0,rgba(190,222,255,.22) 34%,transparent 62%),
+    radial-gradient(ellipse at 28% 92%,rgba(202,235,255,.6) 0,transparent 48%),
+    linear-gradient(145deg,#fbfdff 0%,#eef7ff 36%,#dfedfb 68%,#f5faff 100%);
+}
+.login-panel::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:clamp(260px,32vw,520px);
+  aspect-ratio:1;
+  right:clamp(-230px,-13vw,-100px);
+  top:10%;
+  border-radius:50%;
+  background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.95) 0 4%,rgba(210,236,255,.78) 18%,rgba(141,191,235,.28) 48%,rgba(104,157,213,.08) 67%,transparent 70%);
+  box-shadow:inset 24px 18px 46px rgba(255,255,255,.62),inset -22px -24px 50px rgba(92,145,204,.16),0 30px 70px rgba(85,136,188,.14);
+  filter:saturate(.82);
+}
+.login-panel::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(39,84,132,.42) 0%,rgba(91,143,188,.24) 6%,rgba(145,190,228,.1) 15%,transparent 27%),
+    linear-gradient(112deg,transparent 18%,rgba(255,255,255,.42) 39%,rgba(203,232,255,.14) 52%,transparent 69%);
+  opacity:.88;
+}
+.login-visual::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  top:-4%;
+  right:-12px;
+  width:clamp(78px,8vw,132px);
+  height:108%;
+  pointer-events:none;
+  background:linear-gradient(90deg,transparent 0%,rgba(126,180,226,.08) 35%,rgba(187,220,248,.22) 72%,rgba(228,242,255,.34) 100%);
+  filter:blur(12px);
+}
+.login-panel>*{position:relative;z-index:1}
+.login-panel .el-input__wrapper{
+  min-height:46px;
+  border-radius:11px;
+  background:rgba(250,253,255,.82);
+  box-shadow:0 0 0 1px #c8d6e8 inset,0 7px 20px rgba(77,116,157,.06);
+  backdrop-filter:blur(10px);
+  transition:background-color .2s ease,box-shadow .2s ease;
+}
+.login-panel .el-input__wrapper:hover{background:rgba(255,255,255,.92);box-shadow:0 0 0 1px #aebfd5 inset,0 8px 22px rgba(77,116,157,.08)}
+.login-panel .el-input__wrapper.is-focus,.login-panel .el-input__wrapper:focus-within{background:#fff;box-shadow:0 0 0 1px #88a8cf inset,0 0 0 4px rgba(112,155,207,.13),0 10px 26px rgba(77,116,157,.1)}
+.login-panel .el-input__inner::placeholder{color:#9aaabd}
+
+/* Day workspace navigation: a cool white rail separated from the content canvas. */
+.app-root:not(.is-dark) .sidebar{
+  color:#172033;
+  border-right:1px solid #dfe6f0;
+  background:linear-gradient(180deg,#ffffff 0%,#fbfcfe 48%,#f5f8fc 100%);
+  box-shadow:12px 0 34px rgba(35,55,86,.07);
+}
+.app-root:not(.is-dark) .brand small{color:#8793a6}
+.app-root:not(.is-dark) .side-menu .el-menu-item{color:#68758a}
+.app-root:not(.is-dark) .side-menu .el-menu-item:hover{color:#263750;background:#edf3fb}
+.app-root:not(.is-dark) .side-menu .el-menu-item.is-active{color:#fff;background:linear-gradient(110deg,#285bd7,#3479ff);box-shadow:0 8px 20px rgba(34,89,216,.22)}
+.app-root:not(.is-dark) .side-foot{border-top-color:#e3e9f1}
+.app-root:not(.is-dark) .side-foot strong{color:#263247}
+.app-root:not(.is-dark) .side-foot small,.app-root:not(.is-dark) .side-foot .el-button{color:#7b889b}
+
+/* Desktop edge-reveal navigation drawer. */
+.desktop-nav-trigger{display:none}
+@media(min-width:821px){
+  .sidebar{transform:translateX(calc(-100% - 18px));transition:transform .34s cubic-bezier(.22,.75,.25,1),box-shadow .34s ease}
+  .workspace.nav-revealed .sidebar{transform:translateX(0)}
+  .main-shell{margin-left:0;transition:filter .3s ease}
+  .desktop-nav-trigger{position:fixed;z-index:31;inset:0 auto 0 0;display:block;width:22px;outline:none;cursor:e-resize}
+  .desktop-nav-trigger::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(47,107,255,.08),transparent);opacity:0;transition:opacity .2s ease}
+  .desktop-nav-trigger i{position:absolute;top:50%;left:3px;width:3px;height:64px;border-radius:999px;background:linear-gradient(#7aa7ff,#54cfc5);box-shadow:0 0 14px rgba(47,107,255,.28);opacity:.32;transform:translateY(-50%);transition:opacity .2s ease,height .2s ease}
+  .desktop-nav-trigger:hover::before,.desktop-nav-trigger:focus::before{opacity:1}
+  .desktop-nav-trigger:hover i,.desktop-nav-trigger:focus i,.workspace.nav-revealed .desktop-nav-trigger i{height:86px;opacity:.9}
+  .workspace.nav-revealed .sidebar{box-shadow:18px 0 45px rgba(25,43,70,.16)}
+}
+
+/* Equipment models, ventilation ducts, and irregular moving airflow. */
+.airflow{height:380px;background:linear-gradient(180deg,color-mix(in srgb,var(--canvas) 68%,var(--surface)),var(--surface))}
+.airflow>svg{z-index:0}.flow-dot{display:none}
+.pipe{stroke:#d7e3ee;stroke-width:27;stroke-linecap:square;opacity:1;filter:drop-shadow(0 5px 5px rgba(38,63,94,.12))}
+.pipe.returning{stroke:#dedbec;stroke-dasharray:none}
+.flow-node{min-width:104px;padding:60px 5px 6px;border:0;background:transparent;box-shadow:none}
+.flow-node small,.flow-node strong,.flow-node span{position:relative;z-index:3;text-shadow:0 1px var(--surface)}
+.flow-node::before{content:"";position:absolute;z-index:2;top:0;left:50%;width:82px;height:47px;border:1px solid #9fb2c6;border-radius:8px;transform:translateX(-50%);background:linear-gradient(145deg,#fff,#dce8f3);box-shadow:inset 0 -7px 13px rgba(78,112,146,.1),0 8px 16px rgba(34,62,96,.13)}
+.flow-node::after{content:"";position:absolute;z-index:1;top:9px;left:calc(50% + 38px);width:clamp(48px,7vw,105px);height:30px;background:radial-gradient(ellipse 18px 9px at 50% 0,transparent 56%,#2f6bff 60% 66%,transparent 70%) 0 14px/41px 18px repeat-x,radial-gradient(ellipse 25px 10px at 50% 100%,transparent 57%,#38c9bd 61% 66%,transparent 70%) 12px -5px/59px 21px repeat-x;filter:drop-shadow(0 0 3px rgba(47,107,255,.3));animation:airWave 2.1s linear infinite}
+.pos-c0{left:1%;top:29.3%}.pos-c1{left:24%;top:29.3%}.pos-mix{left:47%;top:29.3%}.pos-out{right:9%;top:29.3%}.pos-return{left:12%;top:63%;bottom:auto}
+.pos-c0::before{border-radius:7px 7px 16px 16px;background:repeating-linear-gradient(90deg,transparent 0 8px,#9eb3c8 9px 11px),linear-gradient(155deg,#fff,#d9e6f1)}
+.pos-c1::before{background:radial-gradient(circle at 25% 50%,#fff 0 7px,#6f91b3 8px 10px,#d9e6f1 11px 17px,transparent 18px),repeating-linear-gradient(90deg,transparent 0 6px,#9db2c7 7px 9px) 53px 10px/22px 27px no-repeat,linear-gradient(145deg,#fff,#d8e6f2)}
+.pos-mix::before{background:linear-gradient(34deg,transparent 46%,#7ba0c3 47% 51%,transparent 52%),linear-gradient(146deg,transparent 46%,#7ba0c3 47% 51%,transparent 52%),linear-gradient(145deg,#fff,#dce8f2)}
+.pos-out::before{height:42px;border-radius:4px;transform:translateX(-50%) rotate(35deg);background:repeating-linear-gradient(90deg,transparent 0 11px,#a6b9cb 12px 13px),repeating-linear-gradient(0deg,transparent 0 10px,#a6b9cb 11px 12px),#e5eef6}
+.pos-out::after{top:23px;left:50%;width:105px;transform:rotate(90deg);transform-origin:left center;animation-duration:1.7s}
+.pos-mix::after{width:clamp(90px,14vw,175px)}
+.pos-return::before{top:0;border-color:#aa9fc9;background:radial-gradient(circle,#fff 0 7px,#816dac 8px 10px,#e2ddef 11px 19px,transparent 20px),linear-gradient(145deg,#fff,#ded8eb)}
+.pos-return::after{top:8px;left:50%;width:62px;transform:rotate(90deg);transform-origin:left center;filter:hue-rotate(45deg);animation-direction:reverse;animation-duration:2.8s}
+.airflow::before{content:"";position:absolute;z-index:1;left:19%;right:10%;top:calc(81% - 15px);height:30px;background:radial-gradient(ellipse 22px 9px at 50% 0,transparent 56%,#866ad4 60% 66%,transparent 70%) 0 14px/51px 18px repeat-x,radial-gradient(ellipse 29px 10px at 50% 100%,transparent 57%,#5d8ee8 61% 66%,transparent 70%) 8px -5px/67px 21px repeat-x;filter:drop-shadow(0 0 3px rgba(111,88,196,.26));animation:airWaveReturn 2.8s linear infinite}
+.cleanroom-box{right:6%;bottom:5%;width:46%;height:42%;padding:36px 18px 15px;border:1px solid #9bb5cf;border-radius:8px;background:linear-gradient(180deg,rgba(240,248,255,.9),rgba(220,237,249,.68));box-shadow:0 10px 22px rgba(35,68,103,.1)}
+.cleanroom-box::before{content:"";position:absolute;z-index:2;left:8%;right:8%;top:10px;height:16px;border:1px solid rgba(90,126,161,.35);background:repeating-linear-gradient(90deg,rgba(84,132,178,.25) 0 2px,transparent 2px 18px)}
+@keyframes airWave{to{background-position:123px 14px,189px -5px}}@keyframes airWaveReturn{to{background-position:-153px 14px,-201px -5px}}
+.is-dark .pipe{stroke:#35465b}.is-dark .pipe.returning{stroke:#443d5c}.is-dark .flow-node::before{filter:brightness(.76)}
+.is-dark .cleanroom-box{border-color:#41566e;background:linear-gradient(180deg,rgba(37,55,76,.92),rgba(25,42,61,.82))}
+@media(max-width:820px){.airflow{height:330px}.flow-node{min-width:68px;padding:49px 1px 4px}.flow-node::before{width:56px;height:38px}.flow-node::after{left:calc(50% + 26px);width:clamp(22px,6vw,42px);height:25px}.flow-node small{font-size:8px}.flow-node strong{font-size:10px}.pos-c0{left:0}.pos-c1{left:24%}.pos-mix{left:47%}.pos-out{right:7%}.pos-return{left:12%}.pos-return::after{left:50%;width:54px}.cleanroom-box{right:3%;width:48%;padding-left:10px;padding-right:10px}}
+@media(prefers-reduced-motion:reduce){.flow-node::after,.airflow::before{animation:none}}
+
+/* Continuous SVG airflow follows the duct centerline through every rounded elbow. */
+.flow-node::after,.airflow::before{display:none}
+.duct-air-streams{pointer-events:none}
+.air-stream{fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;stroke-dasharray:18 3 7 2 24 4 11 3;animation:ductFlow 5.4s linear infinite}
+.fresh-stream{stroke:#2879ff;stroke-width:2.1;filter:drop-shadow(0 0 2px rgba(40,121,255,.28))}
+.fresh-stream.stream-b{stroke:#31c5b8;stroke-width:1.55;stroke-dasharray:11 3 26 4 8 2 19 3;animation-duration:6.4s;animation-delay:-1.3s}
+.return-stream{stroke:#8064dc;stroke-width:2;stroke-dasharray:24 4 9 2 16 3 7 2;animation:ductReturn 6s linear infinite;filter:drop-shadow(0 0 2px rgba(128,100,220,.25))}
+.return-stream.stream-d{stroke:#4c8ee8;stroke-width:1.45;stroke-dasharray:9 2 21 4 13 2 28 5;animation-duration:7.2s;animation-delay:-1.8s}
+@keyframes ductFlow{to{stroke-dashoffset:-100}}@keyframes ductReturn{to{stroke-dashoffset:100}}
+.pos-out{right:12%;top:33.5%}
+.pos-out::before{box-shadow:0 0 0 5px rgba(215,227,238,.86),inset 0 -6px 12px rgba(78,112,146,.09),0 7px 15px rgba(34,62,96,.12)}
+.is-dark .pos-out::before{box-shadow:0 0 0 5px rgba(53,70,91,.9),0 7px 15px rgba(0,0,0,.22)}
+
+/* Multi-layer particles fall with independent speeds and lateral drift. */
+.particle-field{opacity:.66;background-image:radial-gradient(circle,#2f6bff 0 1.2px,transparent 1.8px),radial-gradient(circle,#28bcae 0 1px,transparent 1.7px),radial-gradient(circle,rgba(83,137,224,.72) 0 1.5px,transparent 2px);background-size:37px 53px,61px 79px,83px 67px;background-position:3px -8px,19px 7px,41px -24px;animation:particleFallBase 13s linear infinite}
+.particle-field::before,.particle-field::after{content:"";position:absolute;inset:-18% -12%;pointer-events:none;background-repeat:repeat}
+.particle-field::before{background-image:radial-gradient(circle,rgba(41,186,174,.75) 0 1.25px,transparent 2px),radial-gradient(circle,rgba(47,107,255,.58) 0 .9px,transparent 1.6px);background-size:71px 89px,47px 73px;background-position:8px 13px,29px -17px;animation:particleDriftA 9s ease-in-out infinite}
+.particle-field::after{background-image:radial-gradient(circle,rgba(82,145,232,.55) 0 1px,transparent 1.7px),radial-gradient(circle,rgba(33,175,163,.48) 0 .8px,transparent 1.5px);background-size:97px 113px,59px 101px;background-position:33px -28px,7px 21px;animation:particleDriftB 16s ease-in-out infinite}
+@keyframes particleFallBase{0%{background-position:3px -8px,19px 7px,41px -24px}31%{background-position:10px 42px,13px 31px,49px 5px}67%{background-position:-2px 91px,25px 68px,36px 42px}100%{background-position:7px 151px,15px 126px,45px 110px}}
+@keyframes particleDriftA{0%{transform:translate(-5px,-16px)}38%{transform:translate(7px,24px)}72%{transform:translate(-2px,58px)}100%{transform:translate(5px,96px)}}
+@keyframes particleDriftB{0%{transform:translate(6px,-22px)}27%{transform:translate(-4px,13px)}61%{transform:translate(8px,49px)}100%{transform:translate(-6px,104px)}}
+@media(prefers-reduced-motion:reduce){.air-stream,.particle-field,.particle-field::before,.particle-field::after{animation:none}}

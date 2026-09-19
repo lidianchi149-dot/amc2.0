@@ -8,3 +8,13 @@ Thumbs.db
 # Local browser QA profiles and disposable screenshots
 .edge-*/
 qa-*.png
+
+# Customer source materials are local-only
+客户资料amc/
+
+# Python caches and local runtime state
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
